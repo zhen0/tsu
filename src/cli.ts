@@ -26,9 +26,14 @@ const git = program.command('git').description('Git repository utilities');
 
 git
   .command('check')
-  .description('Check if current directory is in a git repository (exit code only)')
+  .description(
+    'Check if current directory is in a git repository (exit code only)'
+  )
   .argument('[path]', 'path to check (defaults to current directory)')
-  .option('-v, --verbose', 'show human-readable status messages (output to stderr)')
+  .option(
+    '-v, --verbose',
+    'show human-readable status messages (output to stderr)'
+  )
   .action((path: string | undefined, options: { verbose?: boolean }) => {
     gitCheck(path, options);
   });
@@ -48,10 +53,22 @@ git
   .option('-s, --staged', 'show staged changes only')
   .option('-u, --unstaged', 'show unstaged changes only')
   .option('-a, --all', 'show all changes (committed, staged, and unstaged)')
-  .option('-b, --base-branch <branch>', 'base branch to compare against', 'main')
+  .option(
+    '-b, --base-branch <branch>',
+    'base branch to compare against',
+    'main'
+  )
   .option('-v, --verbose', 'show headers and counts (output to stderr)')
-  .action((options: { staged?: boolean; unstaged?: boolean; all?: boolean; baseBranch?: string; verbose?: boolean }) => {
-    gitChanged(options);
-  });
+  .action(
+    (options: {
+      staged?: boolean;
+      unstaged?: boolean;
+      all?: boolean;
+      baseBranch?: string;
+      verbose?: boolean;
+    }) => {
+      gitChanged(options);
+    }
+  );
 
 program.parse();
