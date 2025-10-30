@@ -1,15 +1,28 @@
 import { isGitRepo, getGitRoot } from '../utils/git.js';
 
-export function gitCheck(path?: string): void {
+export interface GitCheckOptions {
+  verbose?: boolean;
+}
+
+export function gitCheck(path?: string, options: GitCheckOptions = {}): void {
   const targetPath = path || process.cwd();
   const isRepo = isGitRepo(targetPath);
+  const verbose = options.verbose || true;
 
   if (isRepo) {
-    const root = getGitRoot(targetPath);
-    console.log(`✓ This is a git repository`);
-    console.log(`  Root: ${root}`);
+    if (verbose) {
+      const root = getGitRoot(targetPath);
+      // Human-readable output to stderr
+      console.error(`✓ This is a git repository`);
+      console.error(`  Root: ${root}`);
+    }
+    // Exit with success code
+    process.exit(0);
   } else {
-    console.log(`✗ Not a git repository`);
+    if (verbose) {
+      console.error(`✗ Not a git repository`);
+    }
+    // Exit with failure code
     process.exit(1);
   }
 }
