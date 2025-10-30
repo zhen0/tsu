@@ -70,7 +70,11 @@ export interface GetChangedFilesOptions {
 export function getChangedFiles(
   options: GetChangedFilesOptions = {}
 ): string[] | null {
-  const { type = 'committed', baseBranch = 'main', cwd = process.cwd() } = options;
+  const {
+    type = 'committed',
+    baseBranch = 'main',
+    cwd = process.cwd(),
+  } = options;
 
   try {
     if (!isGitRepo(cwd)) {
