@@ -1,5 +1,7 @@
 # tsutils
 
+[![CI](https://github.com/bestdan/tsu/actions/workflows/ci.yml/badge.svg)](https://github.com/bestdan/tsu/actions/workflows/ci.yml)
+
 TypeScript command line utilities package.
 
 ## Setup
