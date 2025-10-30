@@ -36,7 +36,7 @@ src/
 - Use strict TypeScript settings (see `tsconfig.json`)
 - Prefer explicit types over `any` (lint warnings for `any`)
 - Use ESM imports/exports (`import`/`export`, not `require`)
-- Target ES2020 or later
+- Target ES2022 (as configured in tsconfig.json)
 - Enable all strict type-checking options
 
 ### Code Style
