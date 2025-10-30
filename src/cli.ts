@@ -4,6 +4,7 @@ import { greet } from './commands/greet.js';
 import { gitCheck } from './commands/git-check.js';
 import { gitRoot } from './commands/git-root.js';
 import { gitChanged } from './commands/git-changed.js';
+import { gitFilter } from './commands/git-filter.js';
 
 const program = new Command();
 
@@ -70,5 +71,14 @@ git
       gitChanged(options);
     }
   );
+
+git
+  .command('filter')
+  .description('Filter files from stdin by removing files matching suffix patterns')
+  .argument('<suffixes...>', 'suffix patterns to filter out (e.g., .g.dart .gql.dart)')
+  .option('-v, --verbose', 'show filter statistics (output to stderr)')
+  .action((suffixes: string[], options: { verbose?: boolean }) => {
+    gitFilter(suffixes, options);
+  });
 
 program.parse();
